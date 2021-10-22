@@ -23,8 +23,27 @@ test('pop', (t) => {
   t.is(s.pop(), '');
 });
 
-test('regex aka scan', (t) => {
+test('scan', (t) => {
   const s = new Scanner('abc');
   t.is(s.scan(/a.c/g), 'abc');
   t.is(s.cursor, 3);
+});
+
+test('scan throws with non-global regex', (t) => {
+  const s = new Scanner('abc');
+  t.throws(() => s.scan(/a.c/));
+});
+
+test('scan, no matches', (t) => {
+  const s = new Scanner('abc');
+  t.is(s.scan(/zzz/g), undefined);
+});
+
+test('scan, invalid match', (t) => {
+  const s = new Scanner('abc 123');
+  s.pop();
+  s.pop();
+  s.pop();
+  t.is(s.cursor, 3);
+  t.is(s.scan(/abc/g), undefined);
 });

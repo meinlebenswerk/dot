@@ -27,7 +27,6 @@ export class Scanner {
   scan(regex: RegExp): string | undefined {
     if (!regex.global) {
       throw Error('For a Scanner-Regex, the global flag must be set');
-      return undefined;
     }
 
     regex.lastIndex = this._cursor;
