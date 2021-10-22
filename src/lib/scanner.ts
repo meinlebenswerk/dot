@@ -14,7 +14,7 @@ export class Scanner {
   }
 
   get cursor(): number {
-    return this.cursor;
+    return this._cursor;
   }
 
   peek(): string {
@@ -22,7 +22,7 @@ export class Scanner {
   }
 
   pop(): string {
-    return this.input[this._cursor++]
+    return this.input[this._cursor++] ?? ''
   }
 
   scan(regex: RegExp): string | undefined {
