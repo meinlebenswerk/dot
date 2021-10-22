@@ -4,7 +4,6 @@ To be extended
 */
 
 export class Scanner {
-
   input: string;
   private _cursor: number;
 
@@ -18,25 +17,25 @@ export class Scanner {
   }
 
   peek(): string {
-    return this.input[this._cursor]
+    return this.input[this._cursor];
   }
 
   pop(): string {
-    return this.input[this._cursor++] ?? ''
+    return this.input[this._cursor++] ?? '';
   }
 
   scan(regex: RegExp): string | undefined {
-    if(!regex.global) {
-      throw Error("For a Scanner-Regex, the global flag must be set")
-      return undefined
+    if (!regex.global) {
+      throw Error('For a Scanner-Regex, the global flag must be set');
+      return undefined;
     }
 
-    regex.lastIndex = this._cursor
-    const match = regex.exec(this.input)
+    regex.lastIndex = this._cursor;
+    const match = regex.exec(this.input);
 
-    if(match === null || match.index !== this._cursor) return undefined
+    if (match === null || match.index !== this._cursor) return undefined;
 
-    this._cursor = regex.lastIndex
-    return match[0]
+    this._cursor = regex.lastIndex;
+    return match[0];
   }
 }
